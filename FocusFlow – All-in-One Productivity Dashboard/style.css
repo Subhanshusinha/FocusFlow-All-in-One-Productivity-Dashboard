@@ -1,0 +1,256 @@
+/* ==== Reset and Global Styles ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(to bottom right, #e5e7eb, #f9fafb);
+  color: #1f2937;
+  height: 100vh;
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: linear-gradient(to bottom right, #1e1e1e, #2e2e2e);
+  color: #f3f4f6;
+}
+
+/* ==== Grid Layout ==== */
+.grid-container {
+  display: grid;
+  height: 100vh;
+  padding: 0.75rem;
+  grid-template-areas:
+    "header header header header"
+    "clock pomodoro world focus"
+    "todo productivity productivity ambient";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ==== Section Cards ==== */
+.section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+.section:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+body.dark .section {
+  background: #2c2c2c;
+  border: 1px solid #444;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* ==== Grid Areas ==== */
+.header       { grid-area: header; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem; }
+.clock        { grid-area: clock; }
+.pomodoro     { grid-area: pomodoro; }
+.world        { grid-area: world; }
+.focus        { grid-area: focus; }
+.todo         { grid-area: todo; }
+.productivity { grid-area: productivity; }
+.ambient      { grid-area: ambient; }
+
+/* ==== Header ==== */
+.header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+.header p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+body.dark .header h1 {
+  color: #f1f5f9;
+}
+body.dark .header p {
+  color: #d1d5db;
+}
+
+/* ==== Dark Mode Toggle ==== */
+#darkModeToggle {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #9ca3af, #e5e7eb);
+  color: #111827;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+#darkModeToggle:hover {
+  background: #d1d5db;
+}
+body.dark #darkModeToggle {
+  background: linear-gradient(to right, #4b5563, #6b7280);
+  color: #f9fafb;
+}
+body.dark #darkModeToggle:hover {
+  background: #52525b;
+}
+
+/* ==== Display Components ==== */
+.clock-display {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2563eb;
+}
+.date, .quote {
+  text-align: center;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+.quote {
+  font-weight: bold;
+  color: #3b82f6;
+}
+body.dark .clock-display {
+  color: #93c5fd;
+}
+body.dark .quote {
+  color: #60a5fa;
+}
+
+/* ==== Timers ==== */
+#timer, #focusTime, #focusDisplay {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #1e40af;
+}
+body.dark #timer, body.dark #focusTime, body.dark #focusDisplay {
+  color: #bfdbfe;
+}
+
+/* ==== Inputs & Selects ==== */
+select, input[type="number"], input[type="text"] {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  width: 100%;
+}
+body.dark select,
+body.dark input[type="number"],
+body.dark input[type="text"] {
+  background: #374151;
+  color: #f1f5f9;
+  border: 1px solid #64748b;
+}
+
+/* ==== Buttons ==== */
+button {
+  margin: 0.3rem 0.3rem 0 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
+  color: #1f2937;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #e0e7ff;
+  transform: translateY(-1px) scale(1.02);
+}
+body.dark button {
+  background: linear-gradient(145deg, #3f3f46, #4b5563);
+  color: #f3f4f6;
+  border: 1px solid #52525b;
+}
+body.dark button:hover {
+  background: #52525b;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ==== World Clock ==== */
+.world-time-display {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 0.6rem;
+  text-align: center;
+  color: #2563eb;
+}
+body.dark .world-time-display {
+  color: #60a5fa;
+}
+
+/* ==== Productivity Meter ==== */
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #e5e7eb;
+}
+progress::-webkit-progress-bar {
+  background-color: #e5e7eb;
+}
+progress::-webkit-progress-value {
+  background-color: #38bdf8;
+  border-radius: 10px;
+}
+#productivityLabel {
+  margin-top: 0.4rem;
+  font-weight: bold;
+}
+
+/* ==== To-Do List ==== */
+.todo-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+#taskList {
+  list-style: none;
+  padding: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+#taskList li {
+  background: #e2e8f0;
+  margin-bottom: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#taskList li:hover {
+  background: #cbd5e1;
+}
+#taskList li.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
+body.dark #taskList li {
+  background: #475569;
+  color: white;
+}
+
+/* ==== Ambient Sound Player ==== */
+input[type="range"] {
+  width: 100%;
+  margin-top: 0.5rem;
+}

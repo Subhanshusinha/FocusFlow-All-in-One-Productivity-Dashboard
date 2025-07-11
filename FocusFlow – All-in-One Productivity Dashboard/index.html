@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SyncDesk - Productivity Suite</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grid-container">
+    
+    <!-- Header -->
+    <header class="header section">
+      <h1>FocusFlow – Time. Tasks. Tranquility.</h1>
+      <p>Your ultimate productivity time companion</p>
+      <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
+    </header>
+
+    <!-- Clock -->
+    <section class="clock section">
+      <div class="clock-display" id="clock">--:--:--</div>
+      <div class="date" id="date">Loading date...</div>
+      <div class="quote" id="quote">Loading quote...</div>
+    </section>
+
+    <!-- Pomodoro Timer -->
+    <section class="pomodoro section">
+      <h3>⏱️ Pomodoro Timer</h3>
+      <p id="timer">25:00</p>
+      <p class="note">When the time is up, a ring will buzz to alert you.</p>
+      <div>
+        <button onclick="startPomodoro()">Start</button>
+        <button onclick="resetPomodoro()">Reset</button>
+      </div>
+    </section>
+
+    <!-- World Clock -->
+    <section class="world section">
+      <h3>🌍 World Clock</h3>
+      <label for="timezone">Select Time Zone:</label>
+      <select id="timezone" onchange="updateWorldTime()">
+        <option value="Asia/Kolkata">🇮🇳 India (Kolkata)</option>
+        <option value="America/New_York">🇺🇸 USA (New York)</option>
+        <option value="Europe/London">🇬🇧 UK (London)</option>
+      </select>
+      <div id="worldClock" class="world-time-display">--:--:--</div>
+    </section>
+
+    <!-- To-Do List -->
+    <section class="todo section">
+      <h3>📝 To-Do List</h3>
+      <div class="todo-input">
+        <input type="text" id="taskInput" placeholder="New task..." />
+        <button onclick="addTask()">Add</button>
+      </div>
+      <ul id="taskList"></ul>
+    </section>
+
+    <!-- Productivity Meter -->
+    <section class="productivity section">
+      <h3>📈 Productivity Meter</h3>
+      <progress id="productivityMeter" value="0" max="100"></progress>
+      <p id="productivityLabel">0% Focused</p>
+      <button onclick="resetProductivityMeter()">Restart</button>
+    </section>
+
+    <!-- Focus Mode Timer -->
+    <section class="section focus" id="focus">
+      <h2>🧠 Focus Mode Timer</h2>
+      <div>
+        <input type="number" id="focusMinutes" value="60" min="1" style="width: 60px;" /> minutes
+      </div>
+      <div id="focusDisplay" class="clock-display">60:00</div>
+      <div>
+        <button onclick="startFocusTimer()">Start</button>
+        <button onclick="stopFocusTimer()">Stop</button>
+        <button onclick="resetFocusTimer()">Reset</button>
+      </div>
+    </section>
+
+    <!-- Ambient Sound Player -->
+    <section class="ambient section">
+      <h3>🎵 Ambient Sound Player</h3>
+      <select id="ambientSelect">
+        <option value="rain">⛅ Rain</option>
+        <option value="ocean">🌊 Ocean</option>
+        <option value="campfire">🔥 Campfire</option>
+      </select>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" />
+      <div>
+        <button onclick="playAmbient()">▶️ Play</button>
+        <button onclick="pauseAmbient()">⏸️ Pause</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Audio Elements -->
+  <audio id="alarmSound" src="ticking-clock.mp3" preload="auto"></audio>
+  <audio id="ambientAudio" loop></audio>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
